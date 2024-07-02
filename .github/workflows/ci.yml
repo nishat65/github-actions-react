@@ -1,11 +1,13 @@
 name: project-ci
 on:
   push:
-    branches: [main]
+    branches: [main] # events filters here in case is main
+    # branches-ignore:
+    #   - gh-pages
   workflow_dispatch:
   pull_request:
     types:
-      - opened
+      - opened # activity types
 
 jobs:
   test:
