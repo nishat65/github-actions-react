@@ -2,6 +2,7 @@ name: project-ci
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -11,6 +12,8 @@ jobs:
         uses: actions/checkout@v3
       #   with:
       #     ...
+      - name: Output event data
+        run: echo ${{ toJSON(github) }}
       - name: Install Nodejs
         uses: actions/setup-node@v3
         with:
@@ -23,8 +26,6 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Output event data
-        run: echo ${{ toJSON(github) }}
       - name: Get Code
         uses: actions/checkout@v3
       - name: Install Nodejs
